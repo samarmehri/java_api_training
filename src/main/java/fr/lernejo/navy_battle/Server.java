@@ -8,8 +8,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Server
-{
+public class Server {
     private final Map<String, String> gameSetting;private final Client client;private final int port;
     public Server(int port, Client client, Map<String, String> gameSetting)
     {this.gameSetting = gameSetting;this.port = port;this.client = client;}

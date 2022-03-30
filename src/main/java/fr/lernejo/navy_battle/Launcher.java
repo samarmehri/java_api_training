@@ -16,7 +16,7 @@ public class Launcher {
         httpServer.start();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         int port;
         if (args.length < 1) {
             Scanner scan = new Scanner(System.in);
@@ -26,15 +26,16 @@ public class Launcher {
         } else {
             port = Integer.parseInt(args[0]);
         }
-        final Map<String, String> gameInfo = new HashMap<String, String>();
+        final HashMap<String, String> gameInfo = new HashMap<String, String>();
         gameInfo.put("id", UUID.randomUUID().toString());
         gameInfo.put("port", String.valueOf(port));
         Server server = new Server(port, gameInfo);
-        try {
-            server.serverInit();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        if (args.length == 2) {
+            Client.start(args[1], gameInfo);
+        }
+        server.start();
         }
     }
 
-}
+

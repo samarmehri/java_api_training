@@ -17,7 +17,7 @@ public class Server {
         this.port = port;
     }
 
-    public void serverInit() throws IOException {
+    public void start() throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(this.port), 0);
         Game serverInitGame = new Game(gameInfo);
 

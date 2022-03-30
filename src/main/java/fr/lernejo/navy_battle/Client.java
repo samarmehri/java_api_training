@@ -20,5 +20,15 @@ public record Client(HttpClient client) {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+
+    }
+    public void fire(String url, String cell) {
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+            .uri(URI.create(url + "api/game/fire?cell=" + cell))
+            .setHeader("Accept", "application/json")
+            .setHeader("Content-Type", "application/json")
+            .GET()
+            .build();
+        client.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString());
     }
 }

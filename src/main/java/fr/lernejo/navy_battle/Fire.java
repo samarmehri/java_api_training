@@ -3,8 +3,6 @@ package fr.lernejo.navy_battle;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import fr.lernejo.navy_battle.Actions;
-import fr.lernejo.navy_battle.QueryFire;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -14,7 +12,7 @@ import java.util.Map;
 public class Fire implements HttpHandler {
     private final Map<String, String> gameInfo;
 
-    public Fire(Map<String, String> gameInfo) {
+    public Fire(Map<String, String> gameInfo, Client client) {
         this.gameInfo = gameInfo;
     }
 

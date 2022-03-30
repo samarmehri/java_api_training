@@ -15,7 +15,7 @@ public class Server {
     public void start()
     {
         InetSocketAddress socketAddr = new InetSocketAddress(port);ExecutorService executorService = Executors.newFixedThreadPool(1);
-        try {HttpServer httpServer = HttpServer.create(socketAddr, 0);Game Game= new Game(gameSetting);System.out.println("Server start at port : " + port);httpServer.setExecutor(executorService);httpServer.createContext("/ping", new Ping());httpServer.createContext("/api/game/start", Game);httpServer.start();
+        try {HttpServer httpServer = HttpServer.create(socketAddr, 0);Game Game= new Game(gameSetting);System.out.println("Server start at port : " + port);httpServer.setExecutor(executorService);httpServer.createContext("/ping", new Ping());httpServer.createContext("/api/game/start", Game);httpServer.start();httpServer.createContext("/api/game/fire", new Fire(gameSetting, client));
         } catch (IOException e) {e.printStackTrace();}
     }
 }

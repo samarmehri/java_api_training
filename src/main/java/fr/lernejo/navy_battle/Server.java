@@ -11,7 +11,7 @@ import java.util.Map;
 public class Server {
     private final int port;
     private final Map<String, String> gameInfo;
-    public Server(int port, Map<String, String> gameInfo) {
+    public Server(int port, Client client, Map<String, String> gameInfo) {
 
         this.gameInfo = gameInfo;
         this.port = port;

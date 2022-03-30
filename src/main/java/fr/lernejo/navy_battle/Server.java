@@ -5,20 +5,25 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
+import java.util.Map;
+
 
 public class Server {
-
     private final int port;
+    private final Map<String, String> gameInfo;
+    public Server(int port, Map<String, String> gameInfo) {
 
-    public Server(int port) {
+        this.gameInfo = gameInfo;
         this.port = port;
     }
 
     public void serverInit() throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(this.port), 0);
+        Game serverInitGame = new Game(gameInfo);
+
         server.setExecutor(Executors.newFixedThreadPool(1));
         server.createContext("/ping", new Ping());
-	 server.createContext("/api/game/start", new ResponsePOST());
+	 server.createContext("/api/game/game", serverInitGame);
         server.start();
     }
 }
